@@ -1,0 +1,64 @@
+:root{
+    --violet: #6725A8;
+    --white: #FFFFFF;
+    --orange: #F55123;
+    --black: #000000;
+    --purple: #CB11AB;
+    --grey: #ccc;
+    --gray: #9797AF;
+    --light-gray: #A0A0A4;
+    --bwhite: #f6f6fa;
+    --dash: #c5c5c8;
+    --red: #FF3B30;
+    --green: #0CB477;
+    --smoky-dark: #F0ECF4;
+    --pc-info: #F6F6FA;
+}
+
+body{
+    font-family: Segoe_UI;
+    background-color: var(--violet);
+}
+
+main{
+    display: block;
+    border-radius: 24px;
+    background-color: var(--bwhite);
+    padding: 15px 0px 36px;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+input+label{
+    cursor: pointer;
+}
+
+button{
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+input{
+    border: none;
+}
+
+input:active, input:hover, input:focus{
+    outline: 0;
+    outline-offset: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+input[type='number']{
+    -moz-appearance: textfield;
+}

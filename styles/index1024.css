@@ -1,0 +1,1089 @@
+@media (min-width:1024px){
+
+    .menu__mobile{
+        display: none;
+    }
+
+    .header{
+        padding: 16px 3px 16px 24px;
+        gap: 15px;
+        height: 88px;
+    }
+
+    .header__nav-main{
+        display: flex;
+        width: 180px;
+        height: 56px;
+        align-items: center;
+        gap: 16px;
+        margin-right: 6px;
+        margin-left: 0px;
+    }
+
+    .nav-main__button-menu{
+        display: flex;
+        padding: 21px 9px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .nav-main__button-menu:hover{
+        border: 1px solid var(--white);
+    }
+
+    .nav-main__button-menu-line{
+        width: 28px;
+        height: 4px;
+        margin: 0;
+        position: relative;
+        display: block;
+        background: var(--white);
+        border-radius: 4px;
+    }
+
+    .nav-main__button-menu-line::before{
+        top: -10px;
+    }
+
+    .nav-main__button-menu-line::after{
+        bottom: -10px;
+    }
+    
+    .nav-main__button-menu-line::before, .nav-main__button-menu-line::after{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        display: block;
+        background: var(--white);
+        border-radius: 4px;
+    }
+
+    .link__icon-search{
+        display: none;
+    }
+
+    .logo__title{
+        width: 110px;
+        margin-top: -4px;
+        padding: 1px 0px;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 24px;
+        word-spacing: 0.1px;
+        letter-spacing: 3px;
+
+    }
+
+    .header__search{
+        display: flex;
+        height: 48px;
+        align-items: center;
+        flex: 1 0 0;
+        border-radius: 36px;
+        background: rgba(255, 255, 255, 0.20);
+    }
+
+    .header__search:hover{
+        background: rgba(255, 255, 255, 0.40);
+    }
+
+    .search__input{
+        font-family: Segoe_UI;
+        flex: 1 0 0;
+        background: transparent;
+        color: var(--white);
+        margin-left: 21px;
+        font-size: 18px;
+        height: 100%;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        padding-bottom: 5px;
+    }
+
+    .search__input::placeholder{
+        font-family: Segoe_UI;
+        color: var(--white);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 24px;
+        opacity: 0.2;
+    }
+
+    .search__button{
+        width: 24px;
+        height: 24px;
+        opacity: 0.4;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        margin-inline: 0px 21px;
+        margin-top: 3px;
+    }
+
+    .header__nav-basket{
+        display: flex;
+        padding-right: 17px;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 28px;
+    }
+
+    .nav-basket__item-profile{
+        position: relative;
+        display: flex;
+        width: 56px;
+        padding-bottom: 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .basket__menu__check{
+        margin-top: -2px;
+    }
+
+    .nav-basket__item-basket{
+        position: relative;
+        display: flex;
+        width: 56px;
+        padding-bottom: 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1px;
+        cursor: pointer;
+    }
+
+    .item-profile__link, .item-basket__link{
+        color: var(--white);
+        font-family: Segoe_UI;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        margin-top: 4px;
+    }
+
+    .item-profile__link:hover, .item-basket__link:hover{
+        color: var(--light-gray);
+    }
+
+    .item-basket__link{
+        margin-left: 3px;
+    }
+
+    .item-profile__link{
+        margin-right: 24px;
+    }
+
+    .link__icon-profile{
+        position: relative;
+        top: -7px;
+        right: -18px;
+    }
+
+    .link__icon-basket{
+        position: relative;
+        top: -6px;
+        right: -9px;
+    }
+
+    .basket-shop-label{
+        display: inline-block;
+        position: absolute;
+        top: -17px;
+        right: -10px;
+        height: 16px;
+        min-width: 16px;
+        padding: 0px 4px;
+        border-radius: 16px;
+        background: var(--orange);
+        color: var(--white);
+        text-align: center;
+        font-family: Segoe_UI;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 15px;
+    }
+
+    .basket__title{
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 36px;
+        letter-spacing: -0.28px;
+        padding-top: 9px;
+        padding-left: 0px;
+    }
+
+    .basket__content{
+        margin-inline: 0px;
+    }
+
+    main {
+        display: flex;
+        padding: 26px 24px 47px;
+        gap: 32px;
+    }
+
+    .main__basket{
+        display: flex;
+    }
+
+    .basket__menu{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 27px;
+    }
+
+    .left{
+        min-width: 640px;
+        flex-grow: 1;
+    }
+
+    .basket__menu button{
+        margin-right: 2px;
+    }
+
+    .right{
+        display: flex;
+    }
+
+    .total-sum{
+        position: sticky;
+        align-self: flex-start;
+        width: 303px;
+        top: 24px;
+        margin-top: -3px;
+        margin-left: 33px;
+        padding: 15px 23px 21px;
+        border-radius: 16px;
+        background: var(--white);
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.30), 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    .total-sum__head__title{
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        letter-spacing: 0.5px;
+        margin-top: 1px;
+    }
+
+    .total-sum__head__title span{
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32px;
+        letter-spacing: -0.24px;
+    }
+
+    .total-sum__delivery, .total-sum__payment__edit{
+        padding-top: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .line, .not-available__line{
+        display: none;
+    }
+
+    .bascket__item:nth-child(1) .line{
+        display: block;
+        width: 639px;
+        margin-top: 1px;
+    }
+
+    .basket__menu .line{
+        margin-top: 53px;
+        width: 639px;
+    }
+
+    .not-available__product-info:nth-child(1) .not-available__line{
+        display: block;
+    }
+
+    .total-sum__delivery, .total-sum__delivery__head{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .total-sum__delivery__head__title{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        margin-top: -1px;
+    }
+
+    .total-sum__delivery__address{
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        margin-right: 5px;
+        margin-top: -3px;
+    }
+
+    .total-sum__delivery__date{
+        align-self: flex-start;
+        color: var(--purple);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        border-bottom: 1px dashed rgba(203, 17, 171, 0.2);
+        letter-spacing: -0.5px;
+        cursor: pointer;
+    }
+
+    .edit_path{
+        margin-right: 5px;
+        margin-top: -1px;
+        margin-bottom: 1px;
+    }
+
+    .total-sum__info{
+        background: var(--pc-info);
+        margin-top: 13px;
+    }
+
+    .total-sum__payment__edit{
+        padding-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .total-sum__payment__edit__head{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .total-sum__payment__edit__head__title{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    .total-sum__payment__edit__field{
+        display: flex;
+    }
+
+    .card-wrapper{
+        border-radius: 4px;
+        width: 32px;
+        height: 24px;
+        background-color: var(--bwhite);
+        margin-top: -2px;
+    }
+
+    .total-sum__payment__edit__field img{
+        width: 30px;
+        height: 9.33px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 7px;
+        display: block;
+    }
+    
+    .total-sum__payment__edit__field__number{
+        font-size: 13px;
+        margin-left: 8px;
+        margin-top: -4px;
+        font-weight: 400;
+    }
+
+    .edit__payment{
+        margin-right: 5px;
+        margin-top: -2px;
+    }
+
+    .total-sum__payment{
+        background: var(--pc-info);
+        margin-top: 10px;
+    }
+
+    .total-sum__accept p{
+        width: 230px;
+    }
+
+    .bascket__item{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 13px;
+        margin-bottom: -9px;
+    }
+
+    .basket__product{
+        margin-top: 1px;
+    }
+
+    .basket__product__image{
+        display: flex;
+        height: 96px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image__wrapper{
+        width: 72px;
+        height: 96px;
+    }
+
+    .bascket__product-size{
+        display: none;
+    }
+
+    .basket__product__image input+label{
+        display: inline-flex;
+        position: static;
+        align-items: center;
+        user-select: none;
+        margin-right: 12px;
+        margin-top: 4px;
+    }
+
+    .basket__product-text{
+        width: 275px;
+    }
+
+    .basket__product__title{
+        max-height: none;
+        width: 275px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
+
+    .basket__product__company{
+        display: flex;
+        align-items: center;
+        color: var(--light-gray);
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        margin-top: 0px;
+    }
+    
+    .basket__product__company img{
+        display: inline-block;
+        margin-left: 4px;
+        cursor: pointer;
+        margin-left: 7px;
+        margin-top: 1px;
+    }
+
+    .product-text__price{
+        display: none;
+    }
+
+    .basket__product__manage{
+        display: flex;
+        justify-content: space-between;
+        width: 226px;
+    }
+
+    .basket__product__contorl{
+        display: block;
+        padding-top: 12px;
+    }
+
+    .basket__product__manage__price{
+        display: flex;
+        align-items: flex-end;
+        margin-top: 12px;
+        flex-direction: column;
+    }
+
+    .manage__price-wrapper__crossed{
+        margin-top: 4px;
+        margin-right: -1px;
+        cursor: pointer;
+        text-decoration: line-through;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.20);
+        color: var(--light-gray);
+        font-family: Segoe_UI;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        margin-left: 8px;
+    }
+
+    .basket__product__size{
+        display: flex;
+        gap: 17px;
+        margin-top: 7px;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; 
+    }
+
+    .color-and-size{
+        display: flex;
+        gap: 17px;
+    }
+    
+    .product__control__counter{
+        width: 100px;
+        height: 44px;
+    }
+
+    .product__control__counter input{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        padding: 5px 0px 7px 1px
+    }
+
+    .product__control__counter button{
+        padding: 8px 8px 8px 10px;
+    }
+
+    .basket__product__saller{
+        margin-top: 9px;
+    }
+
+    .basket__product__icons{
+        display: none;
+        margin-top: 8px;
+        margin-left: 49px;
+    }
+
+    .bascket__item:hover .basket__product__icons{
+        display: flex;
+    }
+
+    .basket__product__icons button{
+        margin-left: -5px;
+    }
+
+    .basket__product__left{
+        margin-top: 8px;
+        margin-left: 0;
+    }
+
+    .manage__price-total{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        margin-right: -1px;
+        margin-top: -1px;
+        text-align: right;
+    }
+
+    .manage__price-total__span{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        margin-right: -1px;
+        margin-top: -1px;
+    }
+
+    .large-span{
+        font-size: 20px;
+    }
+
+    .basket__available{
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .not-available__product-size{
+        display: none;
+    }
+
+    .not-available__product__size{
+        display: flex;
+        gap: 17px;
+        margin-top: 7px;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; 
+    }
+
+    .basket__not-available{
+        margin: 11px 0 31px;
+    }
+
+    .basket__not-available__menu{
+        margin-top: 0;
+    }
+
+    .basket__not-available__menu button{
+        margin-right: 2px;
+    }
+
+    .not-available__product-info{
+        display: flex;
+        margin-top: 16px;
+        justify-content: space-between;
+        margin-bottom: -9px;
+    }
+
+    .not-available__product-text{
+        width: 309px;
+    }
+
+    .not-available_product__title{
+        max-height: none;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px; 
+    }
+
+    .not-available__product__manage{
+        margin-right: 114px;
+        margin-top: 10px;
+    }
+
+    .not-available__product__icons{
+        display: none;
+        gap: 18px;
+    }
+
+    .not-available__product-info:hover .not-available__product__icons{
+        display: flex;
+    }
+
+    .delivery{
+        padding-inline: 24px;
+        margin-top: 5px;
+        margin-right: 2px;
+    }
+
+    .footer p{
+        margin-top: 2px;
+    }
+
+    .delivery__method{
+        margin-bottom: 17px;
+    }
+
+    .delivery__method__title{
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32px;
+        letter-spacing: -0.24px;
+    }
+
+    .delivery__method__change{
+        margin-top: 6px;
+    }
+
+    .delivery__type{
+        width: 153px;
+    }
+
+    .delivery__point{
+        margin-left: 32px;
+    }
+
+    .delivery__price{
+        display: flex;
+    }
+
+    .delivery__price p{
+        width: 153px;
+    } 
+    
+    .delivery__price__sum{
+        margin-left: 32px;
+    }
+
+    .delivery__date{
+        display: flex;
+        margin-bottom: 17px;
+    }
+
+    .delivery__date p{
+        width: 153px;
+    }
+
+    .delivery__products{
+        margin-left: 32px;
+        margin-top: 0;
+    }
+
+    .delivery__place{
+        display: flex;
+    }
+
+    .delivery__return{
+        padding: 0;
+        margin-top: 21px;
+    }
+
+    .payment{
+        margin-top: 16px;
+        padding: 17px 24px 24px;
+    }
+
+    .payment__head{
+        margin-bottom: 15px;
+    }
+
+    .payment__head__title{
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px; 
+        letter-spacing: -0.24px;
+        margin-top: -1px;
+        margin-bottom: 1px;
+    }
+
+    .not-available__menu__check p{
+        margin-top: -1px;
+        margin-bottom: 2px;
+    }
+
+    .payment_change{
+        margin: 6px 2px 0px 16px;
+    }
+
+    .payment__body{
+        margin-top: 16px;
+    }
+
+    .recipient{
+        padding-inline: 24px;
+        padding-top: 18px;
+        margin-top: 14px;
+        margin-bottom: 3px;
+    }
+
+    .recipient__title{
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px; 
+        letter-spacing: -0.24px;
+    }
+
+    .recipient__form{
+        margin-top: 16px;
+        width: 100%;
+        max-width: 589px;
+        gap: 0;
+    }
+
+    .form__wrapper{
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        margin-bottom: -4px;
+    }
+
+    .input__wrapper{
+        width: 100%;
+        margin: 19px 0px 26px;
+    }
+
+    .recipient__line{
+        left: 2px;
+    }
+
+    .inn_down-text{
+        position: absolute;
+        margin-top: 5px;
+    }
+
+    .payment__modal{
+        display: none;
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .payment__modal__content{
+        width: 400px;
+        height: auto;
+        border-radius: 15px;
+        margin-top: -13px;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .payment__modal__head{
+        padding: 37px 0px  13px 0px;
+        margin-top: -4px;
+    }
+
+    .payment__modal__head p{
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px; 
+        letter-spacing: -0.2px;
+        margin-top: -19px;
+        padding-bottom: 2px;
+        padding-left: 3px;
+    }
+
+    .close{
+        margin-top: -17px;
+        margin-right: 2px;
+    }
+
+    .payment__modal__body{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 139px;
+        margin-top: -4px;
+    }
+
+    .payment__modal__form{
+        padding: 0 22px 28px;
+        margin-bottom: -7px;
+    }
+
+    .payment__modal__body__radio{
+        margin-top: 0;
+    }
+
+    .payment__modal__card{
+        margin-top: 0;
+    }
+
+    .payment__modal__form__choose{
+        width: 164px;
+    }
+
+    .popup{
+        opacity: 0;
+        z-index: -1;
+        position: absolute;
+        top: 112%;
+        left: -123px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; 
+        color: var(--black);
+        background: var(--white);
+        border-radius: 8px;
+        padding: 11px 16px 13px;
+        width: 280px;
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.30), 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    .popup__title{
+        font-weight: 700;
+    }
+
+    .wrapper-info{
+        position: relative;
+    }
+
+    .wrapper-info:hover .popup{
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .text-wrapper{
+        position: relative;
+    }
+
+    .text-wrapper:hover .popup{
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .text-wrapper .popup{
+        width: 288px;
+        left: 200px;   
+        top: 20px; 
+    }
+
+    .total-sum-text-wrapper{
+        position: relative;
+    }
+
+    .total-sum-text-wrapper .popup{
+        width: 288px;
+        left: -46px;
+        top: 38px;
+    }
+
+    .total-sum-text-wrapper:hover .popup{
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .manage__price-wrapper{
+        position: relative;
+    }
+
+    .manage__price-wrapper:hover .popup{
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .popup__price{
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        padding: 12px 9px 13px 18px;
+        width: 241px;
+        top: 25px;
+        right: -8px;
+        left: auto;
+    }
+
+    .sale__info{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        min-width: 142px;
+        color: var(--light-gray);
+    }
+
+    .sale__sum{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        text-align: right;
+        width: 100%;
+    }
+
+    .delivery__modal{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .delivery__modal__content{
+        width: 500px;
+        height: auto;
+        border-radius: 15px;
+        margin-left: 98px;
+        margin-top: -19px;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .delivery__modal__content__form{
+        padding: 0px 24px 11px;
+    }
+
+    .delivery__modal__head{
+        padding: 15px 0px 13px 0px;
+    }
+
+    .delivery__modal__head p{
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        letter-spacing: -0.2px;
+    }
+
+    .close__delivery{
+        margin-top: 4px;
+    }
+
+    .delivery__modal__accept{
+        width: 164px;
+        margin-left: 1px;
+        margin-bottom: 13px;
+        margin-top: 14px;
+    }
+
+    .delivery__modal__radio{
+        margin-bottom: 8px;
+    }
+
+    .courier__info{
+        margin-left: 0;
+    }
+
+    .courier__address{
+        width: 400px;
+        margin-left: 3px;
+    }
+
+    .delivery__modal__type{
+        margin-bottom: 27px;
+    }
+
+    .delivery__modal__type button{
+        height: 36px;
+    }
+
+    .courier__choose{
+        padding-bottom: 35px;
+        margin-top: 0px;
+        margin-bottom: 0px
+    }
+
+    .delivery__modal__radio label{
+        align-items: flex-start;
+    }
+
+    .delivery__courier__delete{
+        margin-top: 3px;
+    }
+
+    .pickup__choose{
+        display: flex;
+        padding-bottom: 35px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    footer p{
+        margin-top: 2px;
+    }
+
+    .pickup__choose p{
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+    }
+
+    .pickup__info{
+        margin-left: 0px;
+    }
+
+    .pickup__address{
+        width: 400px;
+        margin-left: 2px;
+    }
+
+    .pickup__address__rating{
+        width: 400px;
+        margin-left: 2px;
+    }
+
+    .delivery__pickup__delete{
+        margin-top: 3px;
+    }
+}

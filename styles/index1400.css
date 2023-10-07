@@ -1,0 +1,36 @@
+@media (min-width:1400px){
+    
+    .left{
+        width: 891px;
+    }
+
+    .total-sum{
+        width: 429px;
+    }
+
+    .bascket__item:nth-child(1) .line{
+        width: 891px;
+    }
+
+    .basket__menu .line{
+        margin-top: 53px;
+        width: 891px;
+    }
+
+    .total-sum__accept p{
+        width: 360px;
+    }
+
+    .recipient__form{
+        max-width: 702px; 
+    }
+
+    .payment__head button{
+        margin-right: 0px;
+    }
+
+    .delivery__method button{
+        margin-right: -2px;
+        margin-top: 7px;
+    }
+}
