@@ -4,7 +4,7 @@
 
 #### Ссылки
 
-GitHub Pages: ссылка1
+GitHub Pages: https://vovaloda.github.io/WB_L0/
 GitHub Repository: https://github.com/Vovaloda/WB_L0.git
 
 #### Запуск локально
