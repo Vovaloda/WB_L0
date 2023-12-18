@@ -642,11 +642,43 @@ function deliveryLabelsUpdate(nodesArray) {
 
 deliveryLabelsUpdate(deliveryLabels);
 
+//Установка начальных данных в итоговой инофрмации 
 function setDefaultTotalSum() {
-    totalSumHeadTitle.textContent = '805 384.4';
-    totalDiscountHeadTitle.textContent = '1 495 713.7';
-    totalSumWithoutDiscout.textContent = '2 301 098';
-    totalCountProducts.textContent = '201 товар';
+    const totalSumHead = products.reduce((sum, current) => {
+        if (current.active) {
+            return sum + current.totalCostWithPrice
+        }
+        return sum;
+    }, 0);
+
+    const totalDiscountHead = products.reduce((sum, current) => {
+        if (current.active) {
+            return sum + current.totalCost - current.totalCostWithPrice
+        }
+        return sum;
+    }, 0);
+
+    const totalSumWithoutDiscoutHead = products.reduce((sum, current) => {
+        if (current.active) {
+            return sum + current.totalCost
+        }
+        return sum;
+    }, 0);
+
+    const totalCountProductsHead = products.reduce((sum, current) => {
+        if (current.active) {
+            return sum + current.choose
+        }
+        return sum;
+    }, 0);
+
+    totalSumHeadTitle.textContent = priceFormatStrWithSpace(priceRound(totalSumHead));
+
+    totalDiscountHeadTitle.textContent = priceFormatStrWithSpace(priceRound(totalDiscountHead));
+
+    totalSumWithoutDiscout.textContent = priceFormatStrWithSpace(priceRound(totalSumWithoutDiscoutHead));
+
+    totalCountProducts.textContent = totalCountProductsHead + " " + formatCount(totalCountProductsHead, productsWord);
 }
 
 setDefaultTotalSum();
