@@ -389,20 +389,14 @@ function counterControl(nodesAray) {
 
         //Обновление информации об оставшихся товарах
         function updateProductsLeftCount() {
-            if (inputField.value >= products[i].count - 2) {
-                productsLeft.style.display = 'block';
-            }
 
-            if (inputField.value == products[i].count) {
-                productsLeft.textContent = 'Осталось 0 шт.';
+            const remainingCount = products[i].count - inputField.value;
+
+            if (remainingCount <= 2) {
+                productsLeft.style.display = 'block';
+                productsLeft.textContent = `Осталось ${remainingCount} шт.`;
             }
-            else if (inputField.value == products[i].count - 1) {
-                productsLeft.textContent = 'Осталось 1 шт.';
-            }
-            else if (inputField.value == products[i].count - 2) {
-                productsLeft.textContent = 'Осталось 2 шт.';
-            }
-            else if (inputField.value < products[i].count - 2) {
+            else {
                 productsLeft.style.display = 'none';
             }
         }
