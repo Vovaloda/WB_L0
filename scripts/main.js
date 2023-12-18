@@ -50,6 +50,8 @@ const deliveryLabels = document.querySelectorAll('.delivery__image__wrapper__lab
 const mobileTotalPrice = document.querySelectorAll('.total-price');
 const mobileDiscountPrice = document.querySelectorAll('.crossed span');
 
+const productsWord = ['товар', 'товаров', 'товара'];
+
 const products = [
     {
         totalCost: 1051,
@@ -264,7 +266,7 @@ basketEveryInput.addEventListener('change', toBasketEveryInputActions);
 
 //Обновление инфомарции о количестве недоступных товаров
 function updateNotAvaibleCountProducts() {
-    const CountFormat = formatCount(productsCount.notAvaibleProductscount, ['товар', 'товаров', 'товара']);
+    const CountFormat = formatCount(productsCount.notAvaibleProductscount, productsWord);
     notAvaibleCountProducts.textContent = `Отсутствуют · ${productsCount.notAvaibleProductscount} ${CountFormat}`;
 }
 
@@ -612,7 +614,7 @@ avaibleArrowButton.addEventListener('click', () => {
         basketMenuCheck.style.display = "none";
         basketMenuHidenText.style.visibility = 'visible';
         lineOnHidden.style.display = 'block';
-        avaibleProductsBlock.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, ['товар', 'товаров', 'товара']);
+        avaibleProductsBlock.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, productsWord);
         priceAvaivleHidden.textContent = priceFormatStrWithSpace(priceRound(totalInfo.totalSum));
     }
 });
@@ -652,7 +654,7 @@ setDefaultTotalSum();
 //Логика с окном общей суммы
 function totalSumUpdate() {
 
-    totalCountProducts.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, ['товар', 'товаров', 'товара']);
+    totalCountProducts.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, productsWord);
 
     const sumToTotalSumHeadTitle = products.reduce((sum, current) => {
         if (current.active) {
