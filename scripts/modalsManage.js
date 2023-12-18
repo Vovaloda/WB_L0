@@ -32,30 +32,56 @@ const deliveryAddress = document.querySelector('.total-sum__delivery__address');
 const deliveryAddressTitle = document.querySelector('.delivery__address');
 const deliveryPointInfo = document.querySelector('.delivery__point__info');
 
+let currentCheckedState;
+
+//currentCheckedState.checked = true;
+
 //Открытие модального окна
-function openModal(modal){
+function openModal(modal) {
     document.body.style.overflow = "hidden";
     modal.style.display = 'flex';
+    currentCheckedState = document.querySelector('.' + modal.classList[0] + ' input[type="radio"]:checked');
 }
 
 //Закрытие модального окна
-function closeModal(modal){
+function closeModal(modal) {
     document.body.style.overflow = "";
     modal.style.display = 'none';
 }
 
 //При клике исполняет функцию с модальным окном
-function getEventModalOnClick(itemsArray, modal, funcOnModal){
-    for(let i = 0; i < itemsArray.length; i++){
+function getEventModalOnClick(itemsArray, modal, funcOnModal) {
+    for (let i = 0; i < itemsArray.length; i++) {
         itemsArray[i].addEventListener('click', () => funcOnModal(modal));
     }
 }
 
+//Наложить функцию при клике
+function getEventOnClick(itemsArray, func) {
+    for (let i = 0; i < itemsArray.length; i++) {
+        itemsArray[i].addEventListener('click', func);
+    }
+}
+
+//Отменить выбор пользователя, если он не нажал кнопку сохранения
+getEventOnClick([deliveryModalCloseButton, paymentModalCloseButton], () => {
+    currentCheckedState.checked = true;
+})
+
 //Отмена действий по умолчанию для форм
-function FormsPreventDefault(formsArray){
-    for(let i = 0; i < formsArray.length; i++){
+function FormsPreventDefault(formsArray) {
+    for (let i = 0; i < formsArray.length; i++) {
         formsArray[i].addEventListener('submit', (e) => {
             e.preventDefault();
+        });
+    }
+}
+
+//Отмена выбора пользователя, если не нажал на кнопку сохранения
+function undoChoose(closeButtons) {
+    for (let i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].addEventListener('click', () => {
+            currentCheckedState.checked = true;
         });
     }
 }
@@ -68,19 +94,22 @@ getEventModalOnClick([deliveryEditPathButton, deliveryMethodChangeButton], deliv
 getEventModalOnClick([deliveryModalCloseButton], deliveryModal, closeModal);
 
 //Закрывает модальное окно при нажатии на кнопку
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == deliveryModal) {
-        closeModal(deliveryModal)
+        closeModal(deliveryModal);
+        currentCheckedState.checked = true;
+        pickupAreaChoose();
     }
     else if (event.target == paymentModal) {
-        closeModal(paymentModal)
+        closeModal(paymentModal);
+        currentCheckedState.checked = true;
     }
 }
 
 //Применение карты по нажатии на кнопку
 paymentChooseButton.addEventListener('click', () => {
-    for(let i = 0; i<paimentRadioInputs.length; i++){
-        if(paimentRadioInputs[i].checked){
+    for (let i = 0; i < paimentRadioInputs.length; i++) {
+        if (paimentRadioInputs[i].checked) {
             let nameCardIcon = paimentRadioInputs[i].value.split('-')[1];
             cardImage.src = `./assets/${nameCardIcon}-icon.svg`;
             paimentCardImage.src = `./assets/${nameCardIcon}-icon.svg`;
@@ -89,27 +118,37 @@ paymentChooseButton.addEventListener('click', () => {
     closeModal(paymentModal);
 });
 
-//Изменение на пункт выдачи в модальном окне
-pickupButton.addEventListener('click', () => {
+//Функция для установки поля с выбором пункта доставки
+function pickupAreaChoose() {
     pickupButton.classList.add('selected-button');
     courierButton.classList.remove('selected-button');
     pickupChooseField.style.display = 'flex';
-    courierChooseField. style.display = 'none';
-});
+    currentCheckedState = document.querySelector('.' + pickupChooseField.classList[0] + ' input[type="radio"]:checked');
+    courierChooseField.style.display = 'none';
+}
+
+//Изменение на пункт выдачи в модальном окне
+pickupButton.addEventListener('click', pickupAreaChoose);
 
 //Изменение на курьера в модальном окне
 courierButton.addEventListener('click', () => {
     courierButton.classList.add('selected-button');
     pickupButton.classList.remove('selected-button');
     courierChooseField.style.display = 'flex';
-    pickupChooseField. style.display = 'none';
+    currentCheckedState = document.querySelector('.' + courierChooseField.classList[0] + ' input[type="radio"]:checked');
+    pickupChooseField.style.display = 'none';
+});
+
+//При закрытии по кнопке закрытия, изменить поле в модальном окне доставки
+deliveryModalCloseButton.addEventListener('click', () => {
+    pickupAreaChoose();
 });
 
 //Применение адреса и типа доставки при нажатии 
 deliveryChooseButton.addEventListener('click', () => {
-    if(courierButton.classList.contains('selected-button')){
-        for(let i = 0; i<courierRadioInputs.length; i++){
-            if(courierRadioInputs[i].checked){
+    if (courierButton.classList.contains('selected-button')) {
+        for (let i = 0; i < courierRadioInputs.length; i++) {
+            if (courierRadioInputs[i].checked) {
                 const courierAddress = document.querySelector('.courier__choose .delivery__modal__radio input[type=radio]:checked + label div .courier__address').textContent;
                 deliveryHeadTitle.textContent = 'Доствка курьером';
                 deliveryType.textContent = 'Курьером';
@@ -119,9 +158,9 @@ deliveryChooseButton.addEventListener('click', () => {
             }
         }
     }
-    else if(pickupButton.classList.contains('selected-button')){
-        for(let i = 0; i<pickupRadioInputs.length; i++){
-            if(pickupRadioInputs[i].checked){
+    else if (pickupButton.classList.contains('selected-button')) {
+        for (let i = 0; i < pickupRadioInputs.length; i++) {
+            if (pickupRadioInputs[i].checked) {
                 const pickupAddress = document.querySelector('.pickup__choose .delivery__modal__radio input[type=radio]:checked + label div .pickup__address').textContent;
                 deliveryHeadTitle.textContent = 'Доставка в пункт выдачи';
                 deliveryType.textContent = 'Пункт выдачи';
@@ -131,5 +170,6 @@ deliveryChooseButton.addEventListener('click', () => {
             }
         }
     }
+    pickupAreaChoose();
     closeModal(deliveryModal);
 });
