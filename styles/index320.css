@@ -621,6 +621,8 @@
 }
 
 .delivery__date {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 24px;
 }
 

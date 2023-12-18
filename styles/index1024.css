@@ -719,6 +719,7 @@
 
     .delivery__date {
         display: flex;
+        flex-direction: row;
         margin-bottom: 17px;
     }
 
