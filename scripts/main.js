@@ -1,3 +1,5 @@
+//По заданию нету возможности использования локального сервера, поэтому и деления на модули нету, ибо CORS ругается 
+
 //Основной файл, в котором обрабатывается логика удаления, блока с общей суммой и основной блок с активными товарами
 
 const notAvaibleDeleteButtons = document.querySelectorAll('.not-available__product__icons .delete-icon');
@@ -93,26 +95,26 @@ const totalSale = 1 - sale - personalSale;
 
 basketMenuHidenText.style.visibility = 'hidden';
 
-//Функция для правильного склонения товаров в зависимости от числа
-function formatProductCount(count) {
+//Функция для правильного склонения слов в зависимости от числа
+function formatCount(count, wordsArray) {
     if (count < 0 || count % 1 !== 0) {
-        return "Неверное количество товаров";
+        return "Неверное количество " + wordsArray[1];
     }
 
     const lastTwoDigits = count % 100;
     const lastDigit = count % 10;
 
     if (count === 0) {
-        return "товаров";
+        return wordsArray[1];
     } else if (lastTwoDigits >= 11 && lastTwoDigits <= 20) {
-        return "товаров";
+        return wordsArray[1];
     } else {
         if (lastDigit === 1) {
-            return "товар";
+            return wordsArray[0];
         } else if (lastDigit >= 2 && lastDigit <= 4) {
-            return "товара";
+            return wordsArray[2];
         } else {
-            return "товаров";
+            return wordsArray[1];
         }
     }
 }
@@ -262,7 +264,7 @@ basketEveryInput.addEventListener('change', toBasketEveryInputActions);
 
 //Обновление инфомарции о количестве недоступных товаров
 function updateNotAvaibleCountProducts() {
-    const CountFormat = formatProductCount(productsCount.notAvaibleProductscount);
+    const CountFormat = formatCount(productsCount.notAvaibleProductscount, ['товар', 'товаров', 'товара']);
     notAvaibleCountProducts.textContent = `Отсутствуют · ${productsCount.notAvaibleProductscount} ${CountFormat}`;
 }
 
@@ -610,7 +612,7 @@ avaibleArrowButton.addEventListener('click', () => {
         basketMenuCheck.style.display = "none";
         basketMenuHidenText.style.visibility = 'visible';
         lineOnHidden.style.display = 'block';
-        avaibleProductsBlock.textContent = totalInfo.totalCount + " " + formatProductCount(totalInfo.totalCount);
+        avaibleProductsBlock.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, ['товар', 'товаров', 'товара']);
         priceAvaivleHidden.textContent = priceFormatStrWithSpace(priceRound(totalInfo.totalSum));
     }
 });
@@ -650,7 +652,7 @@ setDefaultTotalSum();
 //Логика с окном общей суммы
 function totalSumUpdate() {
 
-    totalCountProducts.textContent = totalInfo.totalCount + " " + formatProductCount(totalInfo.totalCount);
+    totalCountProducts.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, ['товар', 'товаров', 'товара']);
 
     const sumToTotalSumHeadTitle = products.reduce((sum, current) => {
         if (current.active) {

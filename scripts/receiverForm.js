@@ -36,6 +36,8 @@ function zeroValueActions(itemsArray) {
             element.style.color = '#F55123';
             element.parentNode.classList.add('errorValue');
             lineBelowInput.classList.add('error-line');
+
+            console.log(element);
             switch (element.name) {
                 case 'ИНН':
                     errorMessege.textContent = 'Укажите ИНН';
