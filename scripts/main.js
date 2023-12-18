@@ -118,21 +118,21 @@ function formatProductCount(count) {
 }
 
 //Установка цен по умолчанию на позиции
-function setDefaultPrices(nodesAray){
-    for(let i = 0; i < nodesAray.length; i++){
+function setDefaultPrices(nodesAray) {
+    for (let i = 0; i < nodesAray.length; i++) {
         let localPriceWithSale = products[i].totalCost * totalSale;
         localPriceWithSale = localPriceWithSale.toFixed(2);
         localPriceWithSale = Math.round(localPriceWithSale * 10) / 10;
         nodesAray[i].textContent = localPriceWithSale.toString().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1 ');
-        mobileTotalPrice[i].textContent = localPriceWithSale + ' com';
+        mobileTotalPrice[i].textContent = localPriceWithSale + ' сом';
     }
 }
 
 setDefaultPrices(localPrices);
 
 //Установка скидок по умолчанию
-function setDefaultPricesSale(nodesArrayPersonal,nodesArrayGeneral){
-    for(let i = 0; i < nodesArrayGeneral.length; i++){
+function setDefaultPricesSale(nodesArrayPersonal, nodesArrayGeneral) {
+    for (let i = 0; i < nodesArrayGeneral.length; i++) {
         let toGeneralSale = products[i].totalCost * sale;
         let toPersonalSale = products[i].totalCost * personalSale;
 
@@ -145,11 +145,11 @@ function setDefaultPricesSale(nodesArrayPersonal,nodesArrayGeneral){
         nodesArrayPersonal[i].textContent = `−${toPersonalSale} сом`;
         nodesArrayGeneral[i].textContent = `−${toGeneralSale} сом`;
 
-        if(toPersonalSale.length >= 5 || toGeneralSale.length >= 5){
-            popUps[i].style.width = '275px'; 
+        if (toPersonalSale.length >= 5 || toGeneralSale.length >= 5) {
+            popUps[i].style.width = '275px';
         }
-        else if(toPersonalSale.length < 5 && toGeneralSale.length < 5){
-            popUps[i].style.width = '241px'; 
+        else if (toPersonalSale.length < 5 && toGeneralSale.length < 5) {
+            popUps[i].style.width = '241px';
         }
     }
 }
@@ -157,9 +157,9 @@ function setDefaultPricesSale(nodesArrayPersonal,nodesArrayGeneral){
 setDefaultPricesSale(popUpPersonalSale, popUpGeneralSale);
 
 //Общее обновление количества позиций
-function updateTotalCoutProducts(){
+function updateTotalCoutProducts() {
     totalInfo.totalCount = products.reduce((sum, current) => {
-        if(current.active){
+        if (current.active) {
             sum += current.choose;
         }
 
@@ -168,48 +168,48 @@ function updateTotalCoutProducts(){
 }
 
 //Добавление функциональности чекбоксам доступных товаров
-function avaibleCheckboxActions(nodesAray){
+function avaibleCheckboxActions(nodesAray) {
 
-    for(let i = 0; i < nodesAray.length; i++){
+    for (let i = 0; i < nodesAray.length; i++) {
         nodesAray[i].addEventListener('change', () => {
 
-            const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i+1})`);
+            const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i + 1})`);
 
-            if(nodesAray[i].checked){
+            if (nodesAray[i].checked) {
                 products[i].active = true;
                 procutInDelivery.style.display = 'block';
 
-                if(i===1){
+                if (i === 1) {
                     deliveryDatesFields.children[1].style.display = 'flex';
                 }
             }
-            else if(!nodesAray[i].checked){
+            else if (!nodesAray[i].checked) {
                 products[i].active = false;
                 procutInDelivery.style.display = 'none';
 
-                if(i===1){
+                if (i === 1) {
                     deliveryDatesFields.children[1].style.display = 'none';
                 }
             }
 
             let countActiveInputs = products.reduce((sum, current) => {
-                if(current.active){
+                if (current.active) {
                     sum++;
                 }
                 return sum;
             }, 0);
 
-            if(countActiveInputs == productsCount.avaibleProductscount){
+            if (countActiveInputs == productsCount.avaibleProductscount) {
                 basketEveryInput.checked = true;
             }
-            else if(countActiveInputs !== productsCount.avaibleProductscount){
+            else if (countActiveInputs !== productsCount.avaibleProductscount) {
                 basketEveryInput.checked = false;
             }
 
-            if(countActiveInputs === 0){
+            if (countActiveInputs === 0) {
                 deliveryDatesFields.children[0].style.display = 'none';
             }
-            else if(countActiveInputs !== 0){
+            else if (countActiveInputs !== 0) {
                 deliveryDatesFields.children[0].style.display = 'flex';
             }
 
@@ -222,84 +222,84 @@ function avaibleCheckboxActions(nodesAray){
 avaibleCheckboxActions(avaibleInputs);
 
 //Хэндлер для basketEveryInput change 
-function toBasketEveryInputActions(){ 
-        if(basketEveryInput.checked){
-            for(let i = 0; i < avaibleInputs.length; i++){
-                if(productsCount.deletedAvaibleProducts.indexOf(i) == -1){
-                    const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i+1})`);
-                    procutInDelivery.style.display = 'block';
-                    avaibleInputs[i].checked = true;
-                    products[i].active = true;
-                } 
+function toBasketEveryInputActions() {
+    if (basketEveryInput.checked) {
+        for (let i = 0; i < avaibleInputs.length; i++) {
+            if (productsCount.deletedAvaibleProducts.indexOf(i) == -1) {
+                const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i + 1})`);
+                procutInDelivery.style.display = 'block';
+                avaibleInputs[i].checked = true;
+                products[i].active = true;
             }
+        }
 
-            if(productsCount.deletedAvaibleProducts.length < products.length){
-                deliveryDatesFields.children[0].style.display = 'flex';
-            }
-            if(products[1].active && products[1].choose > 184){
-                deliveryDatesFields.children[1].style.display = 'flex';
+        if (productsCount.deletedAvaibleProducts.length < products.length) {
+            deliveryDatesFields.children[0].style.display = 'flex';
+        }
+        if (products[1].active && products[1].choose > 184) {
+            deliveryDatesFields.children[1].style.display = 'flex';
+        }
+    }
+    else if (!basketEveryInput.checked) {
+        for (let i = 0; i < avaibleInputs.length; i++) {
+            if (productsCount.deletedAvaibleProducts.indexOf(i) == -1) {
+                avaibleInputs[i].checked = false;
+                products[i].active = false;
+                const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i + 1})`);
+                procutInDelivery.style.display = 'none';
             }
         }
-        else if(!basketEveryInput.checked){
-            for(let i = 0; i < avaibleInputs.length; i++){
-                if(productsCount.deletedAvaibleProducts.indexOf(i) == -1){
-                    avaibleInputs[i].checked = false;
-                    products[i].active = false;
-                    const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i+1})`);
-                    procutInDelivery.style.display = 'none';
-                }
-            }
-            deliveryDatesFields.children[0].style.display = 'none';
-            deliveryDatesFields.children[1].style.display = 'none';
-        }
-    
-        updateBasketLabel(basketLabels);
-        totalSumUpdate();
+        deliveryDatesFields.children[0].style.display = 'none';
+        deliveryDatesFields.children[1].style.display = 'none';
+    }
+
+    updateBasketLabel(basketLabels);
+    totalSumUpdate();
 }
 
 //При изменении общего чекбокса
-basketEveryInput.addEventListener('change',toBasketEveryInputActions);
+basketEveryInput.addEventListener('change', toBasketEveryInputActions);
 
 //Обновление инфомарции о количестве недоступных товаров
-function updateNotAvaibleCountProducts(){
+function updateNotAvaibleCountProducts() {
     const CountFormat = formatProductCount(productsCount.notAvaibleProductscount);
     notAvaibleCountProducts.textContent = `Отсутствуют · ${productsCount.notAvaibleProductscount} ${CountFormat}`;
 }
 
 //Округление цен
-function priceRound(price){
+function priceRound(price) {
     price = price.toFixed(2);
     price = Math.round(price * 10) / 10;
     return price;
 }
 
 //Форматирование текста цены
-function priceFormatStr(price){
+function priceFormatStr(price) {
     return price.toString().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1 ');
 }
 
 //Форматирование текста цены
-function priceFormatStrWithSpace(price){
+function priceFormatStrWithSpace(price) {
     return price.toString().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1 ');
 }
 
 //Обнволение лейблов у корзины
-function updateBasketLabel(itemsArray){
+function updateBasketLabel(itemsArray) {
     updateTotalCoutProducts();
-    for(let i = 0; i<itemsArray.length; i++){
+    for (let i = 0; i < itemsArray.length; i++) {
         itemsArray[i].textContent = totalInfo.totalCount;
-        if(totalInfo.totalCount >= 1){
+        if (totalInfo.totalCount >= 1) {
             itemsArray[i].style.display = 'inline-block';
         }
-        else if(totalInfo.totalCount < 1){
+        else if (totalInfo.totalCount < 1) {
             itemsArray[i].style.display = 'none';
         }
     }
 }
 
 //Установка лейблов у корзины по умолчанию
-function setDefaultBasketLabel(itemsArray){
-    for(let i = 0; i<itemsArray.length; i++){
+function setDefaultBasketLabel(itemsArray) {
+    for (let i = 0; i < itemsArray.length; i++) {
         itemsArray[i].textContent = '201';
     }
 }
@@ -307,8 +307,8 @@ function setDefaultBasketLabel(itemsArray){
 setDefaultBasketLabel(basketLabels);
 
 //Функциональность для каунтера выбора продуктов
-function counterControl(nodesAray){
-    for(let i = 0; i < nodesAray.length; i++){
+function counterControl(nodesAray) {
+    for (let i = 0; i < nodesAray.length; i++) {
         const minusButton = nodesAray[i].children[0];
         const inputField = nodesAray[i].children[1];
         const plusButton = nodesAray[i].children[2];
@@ -322,9 +322,9 @@ function counterControl(nodesAray){
         const minusPersonalSale = nodesAray[i].parentNode.parentNode.children[1].children[1].children[1].children[1].children[1];
 
         const secondDeliveryDate = document.querySelector('.delivery__dates .delivery__date:nth-child(2)');
-        
+
         //Обновление цен в разных блоках
-        function updatePrisesText(){
+        function updatePrisesText() {
             let priceToText = inputField.value * products[i].cost * totalSale;
             priceToText = priceRound(priceToText);
 
@@ -333,17 +333,17 @@ function counterControl(nodesAray){
 
             products[i].totalCost = priceToToalCost;
             products[i].totalCostWithPrice = priceToText;
-            
+
             priseText.textContent = priceFormatStr(priceToText);
             priseTextWithoutSale.textContent = priceFormatStr(products[i].totalCost);
 
             mobileTotalPrice[i].textContent = priceFormatStr(priceToText);
             mobileDiscountPrice[i].textContent = priceFormatStr(products[i].totalCost);
 
-            if((priceToText + '').length < 7){
+            if ((priceToText + '').length < 7) {
                 priseText.classList.add('large-span');
             }
-            else if((priceToText + '').length > 6){
+            else if ((priceToText + '').length > 6) {
                 priseText.classList.remove('large-span');
             }
 
@@ -359,58 +359,58 @@ function counterControl(nodesAray){
             minusGeneralSale.textContent = `−${generalSaleToPoupup} сом`;
             minusPersonalSale.textContent = `−${personalSaleToPoupup} сом`;
 
-            if(generalSaleToPoupup.length >= 5 || personalSaleToPoupup >= 5){
-                popUp.style.width = '275px'; 
+            if (generalSaleToPoupup.length >= 5 || personalSaleToPoupup >= 5) {
+                popUp.style.width = '275px';
             }
-            else if(generalSaleToPoupup.length < 5 && personalSaleToPoupup < 5){
-                popUp.style.width = '241px'; 
+            else if (generalSaleToPoupup.length < 5 && personalSaleToPoupup < 5) {
+                popUp.style.width = '241px';
             }
         }
 
-        function secondDateOpenedLogic(){
-            const secondDateDelevery =  products.filter(el => {
-                if(el.active && el.choose > 184){
+        function secondDateOpenedLogic() {
+            const secondDateDelevery = products.filter(el => {
+                if (el.active && el.choose > 184) {
                     return true
                 }
                 return false;
             });
 
-            if(secondDateDelevery.length == 0){
+            if (secondDateDelevery.length == 0) {
                 secondDeliveryDate.style.display = 'none';
             }
-            else if(secondDateDelevery.length !== 0){
+            else if (secondDateDelevery.length !== 0) {
                 secondDeliveryDate.style.display = 'flex';
             }
         }
 
         //Обновление информации об оставшихся товарах
-        function updateProductsLeftCount(){
-            if(inputField.value >= products[i].count - 2){
+        function updateProductsLeftCount() {
+            if (inputField.value >= products[i].count - 2) {
                 productsLeft.style.display = 'block';
             }
 
-            if(inputField.value == products[i].count){
+            if (inputField.value == products[i].count) {
                 productsLeft.textContent = 'Осталось 0 шт.';
             }
-            else if(inputField.value == products[i].count - 1){
+            else if (inputField.value == products[i].count - 1) {
                 productsLeft.textContent = 'Осталось 1 шт.';
             }
-            else if(inputField.value == products[i].count - 2){
+            else if (inputField.value == products[i].count - 2) {
                 productsLeft.textContent = 'Осталось 2 шт.';
             }
-            else if(inputField.value < products[i].count - 2){
+            else if (inputField.value < products[i].count - 2) {
                 productsLeft.style.display = 'none';
             }
         }
 
-        minusButton.addEventListener('click', ()=>{
+        minusButton.addEventListener('click', () => {
             plusButton.classList.remove('gray');
 
-            if(inputField.value == 2){
+            if (inputField.value == 2) {
                 minusButton.classList.add('gray');
             }
 
-            if(inputField.value > 1){
+            if (inputField.value > 1) {
                 inputField.value--;
                 products[i].choose--;
                 updateProductsLeftCount();
@@ -421,16 +421,16 @@ function counterControl(nodesAray){
 
             secondDateOpenedLogic();
             deliveryLabelsUpdate(deliveryLabels);
-        });           
+        });
 
-        plusButton.addEventListener('click', ()=>{
+        plusButton.addEventListener('click', () => {
             minusButton.classList.remove('gray');
 
-            if(inputField.value == products[i].count - 1){
+            if (inputField.value == products[i].count - 1) {
                 plusButton.classList.add('gray');
             }
 
-            if(inputField.value < products[i].count){
+            if (inputField.value < products[i].count) {
                 inputField.value++;
                 products[i].choose++;
                 updateProductsLeftCount();
@@ -443,22 +443,22 @@ function counterControl(nodesAray){
             deliveryLabelsUpdate(deliveryLabels);
         });
 
-        inputField.addEventListener('change', ()=>{
+        inputField.addEventListener('change', () => {
             inputField.value = Math.round(inputField.value);
 
-            if(inputField.value > products[i].count){
+            if (inputField.value > products[i].count) {
                 inputField.value = products[i].count;
                 plusButton.classList.add('gray');
             }
-            else if(inputField.value <= 1){
+            else if (inputField.value <= 1) {
                 inputField.value = 1;
                 minusButton.classList.add('gray');
             }
-            
-            if(inputField.value > 1){
+
+            if (inputField.value > 1) {
                 minusButton.classList.remove('gray');
             }
-            if(inputField.value < products[i].count){
+            if (inputField.value < products[i].count) {
                 plusButton.classList.remove('gray');
             }
 
@@ -479,8 +479,8 @@ function counterControl(nodesAray){
 counterControl(countOfChoosenProductsControl);
 
 //Функция для добавления функциональности удаления для неактивных продуктов
-function notAvaibleProductsDelete (nodesArray){
-    for(let i = 0; i<nodesArray.length; i++){
+function notAvaibleProductsDelete(nodesArray) {
+    for (let i = 0; i < nodesArray.length; i++) {
         nodesArray[i].addEventListener('click', () => {
             nodesArray[i].parentNode.parentNode.parentNode.parentNode.parentNode.remove(); //Удаление родительского блока с товара, где находитс кнопка
             productsCount.notAvaibleProductscount--;
@@ -489,17 +489,17 @@ function notAvaibleProductsDelete (nodesArray){
     }
 }
 
-notAvaibleProductsDelete (notAvaibleDeleteButtons);
+notAvaibleProductsDelete(notAvaibleDeleteButtons);
 
 //Функция для добавления функциональности удаления для активных продуктов
-function avaibleProductsDelete(nodesArray){
-    for(let i = 0; i<nodesArray.length; i++){
+function avaibleProductsDelete(nodesArray) {
+    for (let i = 0; i < nodesArray.length; i++) {
         nodesArray[i].addEventListener('click', () => {
             const firstDeliveryDate = document.querySelector('.delivery__dates .delivery__date:nth-child(1)');
             const secondDeliveryDate = document.querySelector('.delivery__dates .delivery__date:nth-child(2)');
             const thisWrapperImg = document.querySelectorAll('.delevery_product');
             thisWrapperImg[i].style.display = 'none';
-            if(i === 1){
+            if (i === 1) {
                 secondDeliveryDate.style.display = 'none';
                 thisWrapperImg[3].style.display = 'none';
             }
@@ -510,27 +510,27 @@ function avaibleProductsDelete(nodesArray){
             productsCount.deletedAvaibleProducts.push(i);
 
             let countActiveProducts = products.filter((el) => {
-                if(el.active){
+                if (el.active) {
                     return true;
                 }
                 return false;
             });
 
-            if(countActiveProducts.length === 0){
+            if (countActiveProducts.length === 0) {
                 firstDeliveryDate.style.display = 'none';
             }
 
             let countActiveInputs = products.reduce((sum, current) => {
-                if(current.active){
+                if (current.active) {
                     sum++;
                 }
                 return sum;
             }, 0);
 
-            if(countActiveInputs == productsCount.avaibleProductscount){
+            if (countActiveInputs == productsCount.avaibleProductscount) {
                 basketEveryInput.checked = true;
             }
-            else if(countActiveInputs !== productsCount.avaibleProductscount){
+            else if (countActiveInputs !== productsCount.avaibleProductscount) {
                 basketEveryInput.checked = false;
             }
 
@@ -543,29 +543,29 @@ function avaibleProductsDelete(nodesArray){
 avaibleProductsDelete(avaibleDeleteButtons);
 
 //Поведение стрелки-кнопки для неактивных предметов
-notAvaibleArrowButton.addEventListener('click', () =>{
+notAvaibleArrowButton.addEventListener('click', () => {
     const productsBlock = notAvaibleArrowButton.parentElement.parentElement.parentElement.childNodes[3]; //Блок с товарами
     const ArrowButtonTest = notAvaibleArrowButton.style.transform == 'rotateX(180deg)';
-    if(ArrowButtonTest){
+    if (ArrowButtonTest) {
         productsBlock.style.display = 'block';
         notAvaibleArrowButton.style.transform = 'rotateX(0deg)';
     }
-    else if(!ArrowButtonTest){
+    else if (!ArrowButtonTest) {
         productsBlock.style.display = 'none';
         notAvaibleArrowButton.style.transform = 'rotateX(180deg)';
     }
 });
 
 //Логика для кнопок удаления адресов в модальном окне
-function radiosDeleteManage(nodesArray){
-    for(let i = 0; i<nodesArray.length; i++){
-        nodesArray[i].addEventListener('click', ()=>{
+function radiosDeleteManage(nodesArray) {
+    for (let i = 0; i < nodesArray.length; i++) {
+        nodesArray[i].addEventListener('click', () => {
             const thisParentBlock = nodesArray[i].parentElement.parentElement;
             const thisInput = nodesArray[i].parentElement.parentElement.childNodes[1];
-            if(thisInput.checked){
+            if (thisInput.checked) {
                 alert('Внимание ! Нельзя удалять активный адрес!');
             }
-            if(!thisInput.checked){
+            if (!thisInput.checked) {
                 thisParentBlock.remove();
             }
         })
@@ -576,42 +576,42 @@ radiosDeleteManage(courierDeleteButons);
 radiosDeleteManage(pickupDeleteButons);
 
 //Поведение стрелки-кнопки для активных предметов
-avaibleArrowButton.addEventListener('click', () =>{
+avaibleArrowButton.addEventListener('click', () => {
     const productsBlock = avaibleArrowButton.parentElement.parentElement.parentElement.childNodes[5].childNodes[1]; //Блок с товарами
     const ArrowButtonTest = avaibleArrowButton.style.transform == 'rotateX(180deg)';
 
-    if(ArrowButtonTest){
+    if (ArrowButtonTest) {
         productsBlock.style.display = 'block';
         avaibleArrowButton.style.transform = 'rotateX(0deg)';
         basketMenuCheck.style.display = "flex";
         basketMenuHidenText.style.visibility = 'hidden';
         lineOnHidden.style.display = 'none';
     }
-    else if(!ArrowButtonTest){
+    else if (!ArrowButtonTest) {
         productsBlock.style.display = 'none';
         avaibleArrowButton.style.transform = 'rotateX(180deg)';
         basketMenuCheck.style.display = "none";
         basketMenuHidenText.style.visibility = 'visible';
         lineOnHidden.style.display = 'block';
         avaibleProductsBlock.textContent = totalInfo.totalCount + " " + formatProductCount(totalInfo.totalCount);
-        priceAvaivleHidden.textContent =  priceFormatStrWithSpace(priceRound(totalInfo.totalSum)); 
+        priceAvaivleHidden.textContent = priceFormatStrWithSpace(priceRound(totalInfo.totalSum));
     }
 });
 
 //Обновление лейблов в способе доставки
-function deliveryLabelsUpdate(nodesArray){
-    for(let i = 0; i < nodesArray.length; i++){
-        if(i < products.length){
+function deliveryLabelsUpdate(nodesArray) {
+    for (let i = 0; i < nodesArray.length; i++) {
+        if (i < products.length) {
             nodesArray[i].textContent = products[i].choose;
 
-            if(products[i].choose == 1){
+            if (products[i].choose == 1) {
                 nodesArray[i].style.display = 'none';
             }
-            else if(products[i].choose !== 1){
+            else if (products[i].choose !== 1) {
                 nodesArray[i].style.display = 'inline-block';
             }
-    
-            if(i == 1 && products[i].choose > 184){
+
+            if (i == 1 && products[i].choose > 184) {
                 nodesArray[i].textContent = '184';
                 nodesArray[3].textContent = products[i].choose - 184;
             }
@@ -619,9 +619,9 @@ function deliveryLabelsUpdate(nodesArray){
     }
 }
 
-deliveryLabelsUpdate(deliveryLabels); 
+deliveryLabelsUpdate(deliveryLabels);
 
-function setDefaultTotalSum(){
+function setDefaultTotalSum() {
     totalSumHeadTitle.textContent = '805 384.4';
     totalDiscountHeadTitle.textContent = '1 495 713.7';
     totalSumWithoutDiscout.textContent = '2 301 098';
@@ -631,61 +631,61 @@ function setDefaultTotalSum(){
 setDefaultTotalSum();
 
 //Логика с окном общей суммы
-function totalSumUpdate(){
+function totalSumUpdate() {
 
     totalCountProducts.textContent = totalInfo.totalCount + " " + formatProductCount(totalInfo.totalCount);
 
     const sumToTotalSumHeadTitle = products.reduce((sum, current) => {
-        if(current.active){
+        if (current.active) {
             sum += current.totalCostWithPrice;
         }
         return sum;
-    },0);
+    }, 0);
 
     totalSumHeadTitle.textContent = priceFormatStrWithSpace(priceRound(sumToTotalSumHeadTitle));
     totalInfo.totalSum = sumToTotalSumHeadTitle;
 
     const sumToTotalSumWithoutDiscout = products.reduce((sum, current) => {
-        if(current.active){
+        if (current.active) {
             sum += current.totalCost;
         }
         return sum;
-    },0);
+    }, 0);
 
     totalSumWithoutDiscout.textContent = priceFormatStrWithSpace(priceRound(sumToTotalSumWithoutDiscout));
 
     const sumToTotalDiscountHeadTitle = products.reduce((sum, current) => {
-        if(current.active){
+        if (current.active) {
             sum += current.totalCost - current.totalCostWithPrice;
         }
         return sum;
-    },0);
+    }, 0);
 
     totalDiscountHeadTitle.textContent = priceFormatStrWithSpace(priceRound(sumToTotalDiscountHeadTitle));
     totalInfo.salePrice = sumToTotalDiscountHeadTitle;
 
-    if(products[1].choose > 184 && products[1].active){
+    if (products[1].choose > 184 && products[1].active) {
         totalDeliveryDate.textContent = '5–8 фев';
     }
-    else if(products[1].choose <= 184 || !products[1].active){
+    else if (products[1].choose <= 184 || !products[1].active) {
         totalDeliveryDate.textContent = '5–6 фев';
     }
 
-    if(totalInfo.totalCount == 0){
+    if (totalInfo.totalCount == 0) {
         totalDeliveryDate.style.display = 'none';
     }
-    else if(totalInfo.totalCount !== 0){
+    else if (totalInfo.totalCount !== 0) {
         totalDeliveryDate.style.display = 'block';
     }
 
-    if(totalInfo.totalCount == 0){
+    if (totalInfo.totalCount == 0) {
         acceptButton.disabled = true;
     }
-    else if(totalInfo.totalCount !== 0){
+    else if (totalInfo.totalCount !== 0) {
         acceptButton.disabled = false;
     }
 
-    if(paimentCheck.checked){
-        orderButton.textContent = `Оплатить ${(priceFormatStrWithSpace(priceRound(sumToTotalSumHeadTitle)))} com`;
+    if (paimentCheck.checked) {
+        orderButton.textContent = `Оплатить ${(priceFormatStrWithSpace(priceRound(sumToTotalSumHeadTitle)))} сом`;
     }
 }

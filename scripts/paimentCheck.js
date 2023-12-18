@@ -13,8 +13,8 @@ paimentCheck.addEventListener('change', () => {
         let textToThisButton = priceFormatStrWithSpace(priceRound(totalInfo.totalSum));
         payInfo.style.display = 'none';
         paimentInfo.style.display = 'none';
-        orderButton.textContent = `Оплатить ${(textToThisButton)} com`;
-    } 
+        orderButton.textContent = `Оплатить ${(textToThisButton)} сом`;
+    }
     else if (!paimentCheck.checked) {
         payInfo.style.display = 'block';
         paimentInfo.style.display = 'block';
