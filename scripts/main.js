@@ -630,7 +630,7 @@ function deliveryLabelsUpdate(nodesArray) {
                 nodesArray[i].style.display = 'inline-block';
             }
 
-            if (i == 1 && products[i].choose > 184) {
+            if (products[i].choose > 184) {
                 nodesArray[i].textContent = '184';
                 nodesArray[3].textContent = products[i].choose - 184;
             }
