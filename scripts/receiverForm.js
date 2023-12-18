@@ -28,34 +28,30 @@ onChangeInputsGeneral(inputsArray);
 
 //Действия если инпуты не заполнены
 function zeroValueActions(itemsArray) {
+
+    const errorMessages = {
+        'ИНН': 'Укажите ИНН',
+        'Телефон': 'Укажите номер телефона',
+        'Почта': 'Укажите электронную почту',
+        'Фамилия': 'Введите фамилию',
+        'Имя': 'Укажите имя',
+    };
+
     itemsArray.forEach(element => {
         if (!element.value) {
-            const errorMessege = element.parentNode.childNodes[7];
+            const errorMessage = element.parentNode.childNodes[7];
             const lineBelowInput = element.parentNode.childNodes[5];
             element.scrollIntoView();
             element.style.color = '#F55123';
             element.parentNode.classList.add('errorValue');
             lineBelowInput.classList.add('error-line');
 
-            console.log(element);
-            switch (element.name) {
-                case 'ИНН':
-                    errorMessege.textContent = 'Укажите ИНН';
-                    break;
-                case 'Телефон':
-                    errorMessege.textContent = 'Укажите номер телефона';
-                    break;
-                case 'Почта':
-                    errorMessege.textContent = 'Укажите электронную почту';
-                    break;
-                case 'Фамилия':
-                    errorMessege.textContent = 'Введите фамилию';
-                    break;
-                case 'Имя':
-                    errorMessege.textContent = 'Укажите имя';
-                    break;
+            const elementName = element.name;
+
+            if (errorMessages[elementName]) {
+                errorMessage.textContent = errorMessages[elementName];
+                errorMessage.style.display = 'block';
             }
-            errorMessege.style.display = 'block';
         }
     });
 }
