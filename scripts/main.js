@@ -16,8 +16,8 @@ thridItemInDelivery.style.display = 'none';
 
 const localPrices = document.querySelectorAll('.manage__price-total__span');
 
-const courierDeleteButons = document.querySelectorAll('.delivery__courier__delete');
-const pickupDeleteButons = document.querySelectorAll('.delivery__pickup__delete');
+let courierDeleteButons = document.querySelectorAll('.delivery__courier__delete');
+let pickupDeleteButons = document.querySelectorAll('.delivery__pickup__delete');
 
 const countOfChoosenProductsControl = document.querySelectorAll('.product__control__counter');
 
@@ -558,15 +558,32 @@ notAvaibleArrowButton.addEventListener('click', () => {
 
 //Логика для кнопок удаления адресов в модальном окне
 function radiosDeleteManage(nodesArray) {
+    let currentLenght = nodesArray.length;
+    let currentNodes = Array.from(nodesArray);
+
     for (let i = 0; i < nodesArray.length; i++) {
         nodesArray[i].addEventListener('click', () => {
-            const thisParentBlock = nodesArray[i].parentElement.parentElement;
-            const thisInput = nodesArray[i].parentElement.parentElement.childNodes[1];
-            if (thisInput.checked) {
-                alert('Внимание ! Нельзя удалять активный адрес!');
-            }
-            if (!thisInput.checked) {
+
+            if (currentLenght === 1) {
+                alert('Нельзя удалить последний элемент');
+            } else {
+                const thisParentBlock = nodesArray[i].parentElement.parentElement;
+                const thisInput = nodesArray[i].parentElement.parentElement.childNodes[1];
+
+                let checked = false;
+
+                if (thisInput.checked) {
+                    checked = true;
+                }
+
                 thisParentBlock.remove();
+                currentLenght--;
+                const currentId = currentNodes.findIndex((item) => item === nodesArray[i]);
+                currentNodes.splice(currentId, 1);
+
+                if (checked) {
+                    currentNodes[0].parentElement.parentElement.childNodes[1].checked = true;
+                }
             }
         })
     }
