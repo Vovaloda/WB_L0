@@ -228,6 +228,10 @@
         margin-inline: 0px;
     }
 
+    .basket__available__products {
+        position: relative;
+    }
+
     main {
         display: flex;
         padding: 26px 24px 47px;
@@ -236,6 +240,7 @@
 
     .main__basket {
         display: flex;
+        width: 100%;
     }
 
     .basket__menu {
@@ -305,7 +310,7 @@
     .bascket__item:nth-child(1) .line {
         display: block;
         position: absolute;
-        width: 639px;
+        width: 100%;
         margin-top: 2px;
     }
 
@@ -636,10 +641,6 @@
         margin: 8px 0 31px;
     }
 
-    .total-sum__button-pay {
-        margin-top: -1px;
-    }
-
     .basket__not-available__menu {
         margin-top: 20px;
         margin-bottom: 4px;
@@ -799,7 +800,6 @@
     .recipient__form {
         margin-top: 16px;
         width: 100%;
-        max-width: 589px;
         gap: 0;
     }
 
