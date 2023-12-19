@@ -248,6 +248,7 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 27px;
+        position: relative;
     }
 
     .left {
@@ -316,7 +317,8 @@
 
     .basket__menu .line {
         margin-top: 53px;
-        width: 639px;
+        position: absolute;
+        width: 100%;
     }
 
     .not-available__product-info:nth-child(1) .not-available__line {

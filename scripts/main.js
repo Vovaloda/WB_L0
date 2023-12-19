@@ -596,7 +596,6 @@ function radiosDeleteManage(nodesArray) {
             } else {
                 const thisParentBlock = nodesArray[i].parentElement.parentElement;
                 const thisInput = nodesArray[i].parentElement.parentElement.childNodes[1];
-                console.log(thisInput);
 
                 let checked = false;
 
