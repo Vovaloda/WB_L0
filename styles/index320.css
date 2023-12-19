@@ -179,10 +179,11 @@
 }
 
 .line {
-    position: absolute;
-    width: 90%;
+    position: static;
+    width: 100%;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
 }
 
 .basket__menu .line {
@@ -194,7 +195,7 @@
 .basket__product {
     display: block;
     position: relative;
-    margin-top: 16px;
+    margin-top: -1px;
 }
 
 .basket__product {
@@ -341,7 +342,7 @@
     line-height: 16px;
     font-family: Segoe_UI;
     color: var(--gray);
-    margin-top: 7px;
+    margin-top: 9px;
 }
 
 .basket__product__contorl {
@@ -421,7 +422,7 @@
 }
 
 .basket__not-available {
-    margin-top: 48px;
+    margin-top: 45px;
     margin-bottom: 27px;
 }
 
@@ -933,7 +934,7 @@
 
 .total-sum__info {
     display: flex;
-    margin-top: 18px;
+    margin-top: 20px;
     padding: 8px 8px 12px;
     border-radius: 8px;
     background: var(--smoky-dark);
@@ -953,6 +954,7 @@
     line-height: 16px;
     cursor: pointer;
     border-bottom: 1px dashed rgba(12, 180, 119, 0.2);
+    margin-left: 5px;
 }
 
 .total-sum__payment__edit {
@@ -1015,7 +1017,7 @@
 }
 
 .total-sum__button-pay {
-    margin-top: 25px;
+    margin-top: 24px;
     border-radius: 8px;
     background: var(--purple);
     display: flex;
