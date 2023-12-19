@@ -313,17 +313,17 @@ setDefaultBasketLabel(basketLabels);
 //Функциональность для каунтера выбора продуктов
 function counterControl(nodesAray) {
     for (let i = 0; i < nodesAray.length; i++) {
-        const minusButton = nodesAray[i].children[0];
-        const inputField = nodesAray[i].children[1];
-        const plusButton = nodesAray[i].children[2];
-        const productsLeft = nodesAray[i].parentNode.children[1];
+        const minusButton = nodesAray[i].querySelector('.minus');
+        const inputField = nodesAray[i].querySelector('input[type="number"]');
+        const plusButton = nodesAray[i].querySelector('.plus');
+        const productsLeft = nodesAray[i].parentNode.querySelector('.basket__product__left');
 
-        const priseText = nodesAray[i].parentNode.parentNode.children[1].children[0].children[0];
+        const priseText = nodesAray[i].parentNode.parentNode.querySelector('.manage__price-total__span');
 
-        const priseTextWithoutSale = nodesAray[i].parentNode.parentNode.children[1].children[1].children[0].children[0];
-        const popUp = nodesAray[i].parentNode.parentNode.children[1].children[1].children[1];
-        const minusGeneralSale = nodesAray[i].parentNode.parentNode.children[1].children[1].children[1].children[1].children[0];
-        const minusPersonalSale = nodesAray[i].parentNode.parentNode.children[1].children[1].children[1].children[1].children[1];
+        const priseTextWithoutSale = nodesAray[i].parentNode.parentNode.querySelector('.manage__price-wrapper__crossed__span');
+        const popUp = nodesAray[i].parentNode.parentNode.querySelector('.popup__price');
+        const minusGeneralSale = nodesAray[i].parentNode.parentNode.querySelector('.sale__sum__general');
+        const minusPersonalSale = nodesAray[i].parentNode.parentNode.querySelector('.sale__sum__personal');
 
         const secondDeliveryDate = document.querySelector('.delivery__dates .delivery__date:nth-child(2)');
 
@@ -480,7 +480,7 @@ counterControl(countOfChoosenProductsControl);
 function notAvaibleProductsDelete(nodesArray) {
     for (let i = 0; i < nodesArray.length; i++) {
         nodesArray[i].addEventListener('click', () => {
-            nodesArray[i].parentNode.parentNode.parentNode.parentNode.parentNode.remove(); //Удаление родительского блока с товара, где находитс кнопка
+            nodesArray[i].closest(".not-available__product-info").remove(); //Удаление родительского блока с товара, где находитс кнопка
             productsCount.notAvaibleProductscount--;
             updateNotAvaibleCountProducts();
         });
@@ -502,7 +502,7 @@ function avaibleProductsDelete(nodesArray) {
                 thisWrapperImg[3].style.display = 'none';
             }
 
-            nodesArray[i].parentNode.parentNode.parentNode.parentNode.parentNode.remove();
+            nodesArray[i].closest(".bascket__item").remove();
             productsCount.avaibleProductscount--;
             products[i].active = false;
             productsCount.deletedAvaibleProducts.push(i);
@@ -542,7 +542,7 @@ avaibleProductsDelete(avaibleDeleteButtons);
 
 //Поведение стрелки-кнопки для неактивных предметов
 notAvaibleArrowButton.addEventListener('click', () => {
-    const productsBlock = notAvaibleArrowButton.parentElement.parentElement.parentElement.childNodes[3]; //Блок с товарами
+    const productsBlock = document.querySelector('.basket__not-available__products');
     const ArrowButtonTest = notAvaibleArrowButton.style.transform == 'rotateX(180deg)';
     if (ArrowButtonTest) {
         productsBlock.style.display = 'block';
@@ -567,6 +567,7 @@ function radiosDeleteManage(nodesArray) {
             } else {
                 const thisParentBlock = nodesArray[i].parentElement.parentElement;
                 const thisInput = nodesArray[i].parentElement.parentElement.childNodes[1];
+                console.log(thisInput);
 
                 let checked = false;
 
@@ -592,7 +593,7 @@ radiosDeleteManage(pickupDeleteButons);
 
 //Поведение стрелки-кнопки для активных предметов
 avaibleArrowButton.addEventListener('click', () => {
-    const productsBlock = avaibleArrowButton.parentElement.parentElement.parentElement.childNodes[5].childNodes[1]; //Блок с товарами
+    const productsBlock = document.querySelector('.basket__available__products');
     const ArrowButtonTest = avaibleArrowButton.style.transform == 'rotateX(180deg)';
 
     if (ArrowButtonTest) {

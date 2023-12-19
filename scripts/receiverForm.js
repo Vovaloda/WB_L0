@@ -14,8 +14,8 @@ const inputsArray = [innInput, phoneInput, mailInput, lastNameInput, nameInput];
 function onChangeInputsGeneral(itemsArray) {
     for (let i = 0; i < itemsArray.length; i++) {
         itemsArray[i].addEventListener('change', () => {
-            const errorMessege = itemsArray[i].parentNode.childNodes[7];
-            const lineBelowInput = itemsArray[i].parentNode.childNodes[5];
+            const errorMessege = itemsArray[i].parentNode.querySelector('.error');
+            const lineBelowInput = itemsArray[i].parentNode.querySelector('.recipient__line');
             itemsArray[i].style.color = '#000000';
             itemsArray[i].parentNode.classList.remove('errorValue');
             lineBelowInput.classList.remove('error-line');
@@ -39,8 +39,8 @@ function zeroValueActions(itemsArray) {
 
     itemsArray.forEach(element => {
         if (!element.value) {
-            const errorMessage = element.parentNode.childNodes[7];
-            const lineBelowInput = element.parentNode.childNodes[5];
+            const errorMessage = element.parentNode.querySelector('.error');
+            const lineBelowInput = element.parentNode.querySelector('.recipient__line');
             element.scrollIntoView();
             element.style.color = '#F55123';
             element.parentNode.classList.add('errorValue');
@@ -61,7 +61,7 @@ function upperTextManage(itemsArray) {
     for (let i = 0; i < itemsArray.length; i++) {
         itemsArray[i].addEventListener('input', () => {
             const currentLength = itemsArray[i].value.length;
-            const upperText = itemsArray[i].parentNode.childNodes[1];
+            const upperText = itemsArray[i].parentNode.querySelector('.text-up');
             if (currentLength == 0 || (itemsArray[i] == phoneInput && itemsArray[i].value == "+")) {
                 upperText.style.display = 'none';;
             }
@@ -117,8 +117,8 @@ phoneInput.addEventListener('input', (e) => {
 
 //Действия, при некорректном вводе ИНН
 innInput.addEventListener('change', () => {
-    const errorMessege = innInput.parentNode.childNodes[7];
-    const lineBelowInput = innInput.parentNode.childNodes[5];
+    const errorMessege = innInput.parentNode.querySelector('.error');
+    const lineBelowInput = innInput.parentNode.querySelector('.recipient__line');
     let innTest = /^\d{14}$/.test(innInput.value);
     if (!innTest && innInput.value.length > 0) {
         innInput.style.color = '#F55123';
@@ -131,8 +131,8 @@ innInput.addEventListener('change', () => {
 
 //Действия, при некорректном вводе телефона
 phoneInput.addEventListener('change', () => {
-    const errorMessege = phoneInput.parentNode.childNodes[7];
-    const lineBelowInput = phoneInput.parentNode.childNodes[5];
+    const errorMessege = phoneInput.parentNode.querySelector('.error');
+    const lineBelowInput = phoneInput.parentNode.querySelector('.recipient__line');
     let phoneTest = /^\+\d \d{3} \d{3}-\d{2}-\d{2}$/.test(phoneInput.value);
     if (!phoneTest && phoneInput.value.length > 0) {
         phoneInput.style.color = '#F55123';
@@ -145,8 +145,8 @@ phoneInput.addEventListener('change', () => {
 
 //Действия, при некорректном вводе электронной почты
 mailInput.addEventListener('change', () => {
-    const errorMessege = mailInput.parentNode.childNodes[7];
-    const lineBelowInput = mailInput.parentNode.childNodes[5];
+    const errorMessege = mailInput.parentNode.querySelector('.error');
+    const lineBelowInput = mailInput.parentNode.querySelector('.recipient__line');
     let mailTest = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(mailInput.value);
     if (!mailTest && mailInput.value.length > 0) {
         mailInput.style.color = '#F55123';
