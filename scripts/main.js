@@ -14,7 +14,6 @@ const avaibleProductsBlock = document.querySelector('.count');
 const priceAvaivleHidden = document.querySelector('.amount');
 const lineOnHidden = document.querySelector('.basket__menu .line');
 const thridItemInDelivery = document.querySelector('.delivery__products .delevery_product:nth-child(3)');
-thridItemInDelivery.style.display = 'none';
 
 const localPrices = document.querySelectorAll('.manage__price-total__span');
 
@@ -121,6 +120,36 @@ function formatCount(count, wordsArray) {
     }
 }
 
+function getClassDisplayNone(el) {
+    el.classList.remove('display__block');
+    el.classList.add('display__none');
+    el.classList.remove('display__flex');
+    el.classList.remove('display__inline-block');
+}
+
+function getClassDisplayBlock(el) {
+    el.classList.add('display__block');
+    el.classList.remove('display__none');
+    el.classList.remove('display__flex');
+    el.classList.remove('display__inline-block');
+}
+
+function getClassDisplayFlex(el) {
+    el.classList.remove('display__block');
+    el.classList.remove('display__none');
+    el.classList.add('display__flex');
+    el.classList.remove('display__inline-block');
+}
+
+function getClassDisplayInlineBlock(el) {
+    el.classList.remove('display__block');
+    el.classList.remove('display__none');
+    el.classList.remove('display__flex');
+    el.classList.add('display__inline-block');
+}
+
+getClassDisplayNone(thridItemInDelivery);
+
 //Установка цен по умолчанию на позиции
 function setDefaultPrices(nodesAray) {
     for (let i = 0; i < nodesAray.length; i++) {
@@ -181,18 +210,18 @@ function avaibleCheckboxActions(nodesAray) {
 
             if (nodesAray[i].checked) {
                 products[i].active = true;
-                procutInDelivery.style.display = 'block';
+                getClassDisplayBlock(procutInDelivery);
 
                 if (i === 1) {
-                    deliveryDatesFields.children[1].style.display = 'flex';
+                    getClassDisplayFlex(deliveryDatesFields.children[1]);
                 }
             }
             else if (!nodesAray[i].checked) {
                 products[i].active = false;
-                procutInDelivery.style.display = 'none';
+                getClassDisplayNone(procutInDelivery);
 
                 if (i === 1) {
-                    deliveryDatesFields.children[1].style.display = 'none';
+                    getClassDisplayNone(deliveryDatesFields.children[1]);
                 }
             }
 
@@ -211,10 +240,10 @@ function avaibleCheckboxActions(nodesAray) {
             }
 
             if (countActiveInputs === 0) {
-                deliveryDatesFields.children[0].style.display = 'none';
+                getClassDisplayNone(deliveryDatesFields.children[0]);
             }
             else if (countActiveInputs !== 0) {
-                deliveryDatesFields.children[0].style.display = 'flex';
+                getClassDisplayFlex(deliveryDatesFields.children[0]);
             }
 
             updateBasketLabel(basketLabels);
@@ -231,17 +260,17 @@ function toBasketEveryInputActions() {
         for (let i = 0; i < avaibleInputs.length; i++) {
             if (productsCount.deletedAvaibleProducts.indexOf(i) == -1) {
                 const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i + 1})`);
-                procutInDelivery.style.display = 'block';
+                getClassDisplayBlock(procutInDelivery);
                 avaibleInputs[i].checked = true;
                 products[i].active = true;
             }
         }
 
         if (productsCount.deletedAvaibleProducts.length < products.length) {
-            deliveryDatesFields.children[0].style.display = 'flex';
+            getClassDisplayFlex(deliveryDatesFields.children[0]);
         }
         if (products[1].active && products[1].choose > 184) {
-            deliveryDatesFields.children[1].style.display = 'flex';
+            getClassDisplayFlex(deliveryDatesFields.children[1]);
         }
     }
     else if (!basketEveryInput.checked) {
@@ -250,11 +279,11 @@ function toBasketEveryInputActions() {
                 avaibleInputs[i].checked = false;
                 products[i].active = false;
                 const procutInDelivery = document.querySelector(`.delivery__products .delevery_product:nth-child(${i + 1})`);
-                procutInDelivery.style.display = 'none';
+                getClassDisplayNone(procutInDelivery);
             }
         }
-        deliveryDatesFields.children[0].style.display = 'none';
-        deliveryDatesFields.children[1].style.display = 'none';
+        getClassDisplayNone(deliveryDatesFields.children[0]);
+        getClassDisplayNone(deliveryDatesFields.children[1]);
     }
 
     updateBasketLabel(basketLabels);
@@ -293,10 +322,10 @@ function updateBasketLabel(itemsArray) {
     for (let i = 0; i < itemsArray.length; i++) {
         itemsArray[i].textContent = totalInfo.totalCount;
         if (totalInfo.totalCount >= 1) {
-            itemsArray[i].style.display = 'inline-block';
+            getClassDisplayInlineBlock(itemsArray[i]);
         }
         else if (totalInfo.totalCount < 1) {
-            itemsArray[i].style.display = 'none';
+            getClassDisplayNone(itemsArray[i]);
         }
     }
 }
@@ -380,10 +409,10 @@ function counterControl(nodesAray) {
             });
 
             if (secondDateDelevery.length == 0) {
-                secondDeliveryDate.style.display = 'none';
+                getClassDisplayNone(secondDeliveryDate);
             }
             else if (secondDateDelevery.length !== 0) {
-                secondDeliveryDate.style.display = 'flex';
+                getClassDisplayFlex(secondDeliveryDate);
             }
         }
 
@@ -393,11 +422,11 @@ function counterControl(nodesAray) {
             const remainingCount = products[i].count - inputField.value;
 
             if (remainingCount <= 2) {
-                productsLeft.style.display = 'block';
+                getClassDisplayBlock(productsLeft);
                 productsLeft.textContent = `Осталось ${remainingCount} шт.`;
             }
             else {
-                productsLeft.style.display = 'none';
+                getClassDisplayNone(productsLeft);
             }
         }
 
@@ -496,10 +525,10 @@ function avaibleProductsDelete(nodesArray) {
             const firstDeliveryDate = document.querySelector('.delivery__dates .delivery__date:nth-child(1)');
             const secondDeliveryDate = document.querySelector('.delivery__dates .delivery__date:nth-child(2)');
             const thisWrapperImg = document.querySelectorAll('.delevery_product');
-            thisWrapperImg[i].style.display = 'none';
+            getClassDisplayNone(thisWrapperImg[i]);
             if (i === 1) {
-                secondDeliveryDate.style.display = 'none';
-                thisWrapperImg[3].style.display = 'none';
+                getClassDisplayNone(secondDeliveryDate);
+                getClassDisplayNone(thisWrapperImg[3]);
             }
 
             nodesArray[i].closest(".bascket__item").remove();
@@ -515,7 +544,7 @@ function avaibleProductsDelete(nodesArray) {
             });
 
             if (countActiveProducts.length === 0) {
-                firstDeliveryDate.style.display = 'none';
+                getClassDisplayNone(firstDeliveryDate);
             }
 
             let countActiveInputs = products.reduce((sum, current) => {
@@ -545,11 +574,11 @@ notAvaibleArrowButton.addEventListener('click', () => {
     const productsBlock = document.querySelector('.basket__not-available__products');
     const ArrowButtonTest = notAvaibleArrowButton.style.transform == 'rotateX(180deg)';
     if (ArrowButtonTest) {
-        productsBlock.style.display = 'block';
+        getClassDisplayBlock(productsBlock);
         notAvaibleArrowButton.style.transform = 'rotateX(0deg)';
     }
     else if (!ArrowButtonTest) {
-        productsBlock.style.display = 'none';
+        getClassDisplayNone(productsBlock);
         notAvaibleArrowButton.style.transform = 'rotateX(180deg)';
     }
 });
@@ -597,18 +626,18 @@ avaibleArrowButton.addEventListener('click', () => {
     const ArrowButtonTest = avaibleArrowButton.style.transform == 'rotateX(180deg)';
 
     if (ArrowButtonTest) {
-        productsBlock.style.display = 'block';
+        getClassDisplayBlock(productsBlock);
         avaibleArrowButton.style.transform = 'rotateX(0deg)';
-        basketMenuCheck.style.display = "flex";
+        getClassDisplayFlex(basketMenuCheck);
         basketMenuHidenText.style.visibility = 'hidden';
-        lineOnHidden.style.display = 'none';
+        getClassDisplayNone(lineOnHidden);
     }
     else if (!ArrowButtonTest) {
-        productsBlock.style.display = 'none';
+        getClassDisplayNone(productsBlock);
         avaibleArrowButton.style.transform = 'rotateX(180deg)';
-        basketMenuCheck.style.display = "none";
+        getClassDisplayNone(basketMenuCheck);
         basketMenuHidenText.style.visibility = 'visible';
-        lineOnHidden.style.display = 'block';
+        getClassDisplayBlock(lineOnHidden);
         avaibleProductsBlock.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, productsWord);
         priceAvaivleHidden.textContent = priceFormatStrWithSpace(priceRound(totalInfo.totalSum));
     }
@@ -621,10 +650,10 @@ function deliveryLabelsUpdate(nodesArray) {
             nodesArray[i].textContent = products[i].choose;
 
             if (products[i].choose == 1) {
-                nodesArray[i].style.display = 'none';
+                getClassDisplayNone(nodesArray[i]);
             }
             else if (products[i].choose !== 1) {
-                nodesArray[i].style.display = 'inline-block';
+                getClassDisplayInlineBlock(nodesArray[i]);
             }
 
             if (products[i].choose > 184) {
@@ -720,10 +749,10 @@ function totalSumUpdate() {
     }
 
     if (totalInfo.totalCount == 0) {
-        totalDeliveryDate.style.display = 'none';
+        getClassDisplayNone(totalDeliveryDate);
     }
     else if (totalInfo.totalCount !== 0) {
-        totalDeliveryDate.style.display = 'block';
+        getClassDisplayBlock(totalDeliveryDate);
     }
 
     if (totalInfo.totalCount == 0) {

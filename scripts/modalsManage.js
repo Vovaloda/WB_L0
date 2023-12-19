@@ -34,19 +34,17 @@ const deliveryPointInfo = document.querySelector('.delivery__point__info');
 
 let currentCheckedState;
 
-//currentCheckedState.checked = true;
-
 //Открытие модального окна
 function openModal(modal) {
     document.body.style.overflow = "hidden";
-    modal.style.display = 'flex';
+    getClassDisplayFlex(modal);
     currentCheckedState = document.querySelector('.' + modal.classList[0] + ' input[type="radio"]:checked');
 }
 
 //Закрытие модального окна
 function closeModal(modal) {
     document.body.style.overflow = "";
-    modal.style.display = 'none';
+    getClassDisplayNone(modal);
 }
 
 //При клике исполняет функцию с модальным окном
@@ -122,9 +120,9 @@ paymentChooseButton.addEventListener('click', () => {
 function pickupAreaChoose() {
     pickupButton.classList.add('selected-button');
     courierButton.classList.remove('selected-button');
-    pickupChooseField.style.display = 'flex';
+    getClassDisplayFlex(pickupChooseField);
     currentCheckedState = document.querySelector('.' + pickupChooseField.classList[0] + ' input[type="radio"]:checked');
-    courierChooseField.style.display = 'none';
+    getClassDisplayNone(courierChooseField);
 }
 
 //Изменение на пункт выдачи в модальном окне
@@ -134,9 +132,9 @@ pickupButton.addEventListener('click', pickupAreaChoose);
 courierButton.addEventListener('click', () => {
     courierButton.classList.add('selected-button');
     pickupButton.classList.remove('selected-button');
-    courierChooseField.style.display = 'flex';
+    getClassDisplayFlex(courierChooseField);
     currentCheckedState = document.querySelector('.' + courierChooseField.classList[0] + ' input[type="radio"]:checked');
-    pickupChooseField.style.display = 'none';
+    getClassDisplayNone(pickupChooseField);
 });
 
 //При закрытии по кнопке закрытия, изменить поле в модальном окне доставки
@@ -154,7 +152,7 @@ deliveryChooseButton.addEventListener('click', () => {
                 deliveryType.textContent = 'Курьером';
                 deliveryAddress.textContent = courierAddress;
                 deliveryAddressTitle.textContent = courierAddress;
-                deliveryPointInfo.style.display = 'none';
+                getClassDisplayNone(deliveryPointInfo);
             }
         }
     }
@@ -166,7 +164,7 @@ deliveryChooseButton.addEventListener('click', () => {
                 deliveryType.textContent = 'Пункт выдачи';
                 deliveryAddress.textContent = pickupAddress;
                 deliveryAddressTitle.textContent = pickupAddress;
-                deliveryPointInfo.style.display = 'flex';
+                getClassDisplayFlex(deliveryPointInfo);
             }
         }
     }

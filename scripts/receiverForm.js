@@ -19,7 +19,7 @@ function onChangeInputsGeneral(itemsArray) {
             itemsArray[i].style.color = '#000000';
             itemsArray[i].parentNode.classList.remove('errorValue');
             lineBelowInput.classList.remove('error-line');
-            errorMessege.style.display = 'none';
+            getClassDisplayNone(errorMessege);
         });
     }
 }
@@ -50,7 +50,7 @@ function zeroValueActions(itemsArray) {
 
             if (errorMessages[elementName]) {
                 errorMessage.textContent = errorMessages[elementName];
-                errorMessage.style.display = 'block';
+                getClassDisplayBlock(errorMessage);
             }
         }
     });
@@ -63,10 +63,10 @@ function upperTextManage(itemsArray) {
             const currentLength = itemsArray[i].value.length;
             const upperText = itemsArray[i].parentNode.querySelector('.text-up');
             if (currentLength == 0 || (itemsArray[i] == phoneInput && itemsArray[i].value == "+")) {
-                upperText.style.display = 'none';;
+                getClassDisplayNone(upperText);
             }
             else if (currentLength > 0) {
-                upperText.style.display = 'block';
+                getClassDisplayBlock(upperText);
             }
         });
     }
@@ -125,7 +125,7 @@ innInput.addEventListener('change', () => {
         innInput.parentNode.classList.add('errorValue');
         lineBelowInput.classList.add('error-line');
         errorMessege.textContent = 'Проверьте ИНН';
-        errorMessege.style.display = 'block';
+        getClassDisplayBlock(errorMessege);
     }
 });
 
@@ -139,7 +139,7 @@ phoneInput.addEventListener('change', () => {
         phoneInput.parentNode.classList.add('errorValue');
         lineBelowInput.classList.add('error-line');
         errorMessege.textContent = 'Формат: +9 999 999 99 99';
-        errorMessege.style.display = 'block';
+        getClassDisplayBlock(errorMessege);
     }
 });
 
@@ -153,7 +153,7 @@ mailInput.addEventListener('change', () => {
         mailInput.parentNode.classList.add('errorValue');
         lineBelowInput.classList.add('error-line');
         errorMessege.textContent = 'Проверьте адрес электронной почты';
-        errorMessege.style.display = 'block';
+        getClassDisplayBlock(errorMessege);
     }
 });
 

@@ -11,13 +11,13 @@ const orderButton = document.querySelector('.total-sum__button-pay');
 paimentCheck.addEventListener('change', () => {
     if (paimentCheck.checked) {
         let textToThisButton = priceFormatStrWithSpace(priceRound(totalInfo.totalSum));
-        payInfo.style.display = 'none';
-        paimentInfo.style.display = 'none';
+        payInfo.classList.add('display__none');
+        paimentInfo.classList.add('display__none');
         orderButton.textContent = `Оплатить ${(textToThisButton)} сом`;
     }
     else if (!paimentCheck.checked) {
-        payInfo.style.display = 'block';
-        paimentInfo.style.display = 'block';
+        payInfo.classList.remove('display__none');
+        paimentInfo.classList.remove('display__none');
         orderButton.textContent = 'Заказать';
     }
 });

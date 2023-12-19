@@ -1495,3 +1495,19 @@ footer p {
 .total-sum__head {
     margin-top: -1px;
 }
+
+.display__none {
+    display: none !important;
+}
+
+.display__block {
+    display: block !important;
+}
+
+.display__flex {
+    display: flex !important;
+}
+
+.display__inline-block {
+    display: inline-block !important;
+}
