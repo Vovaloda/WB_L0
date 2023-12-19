@@ -21,7 +21,7 @@
     }
 
     .payment__head button {
-        margin-right: 0px;
+        margin-right: -1px;
     }
 
     .delivery__method button {
@@ -31,5 +31,19 @@
 
     .total-sum__button-pay {
         margin-top: 24px;
+        width: 100%;
+    }
+
+    .total-sum__info span {
+        margin-left: 0px;
+    }
+
+    .total-sum {
+        padding-left: 24px;
+    }
+
+    .edit__payment,
+    .edit_path {
+        margin-right: 4px;
     }
 }

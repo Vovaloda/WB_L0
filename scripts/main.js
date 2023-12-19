@@ -94,8 +94,6 @@ const sale = 0.55;
 const personalSale = 0.1;
 const totalSale = 1 - sale - personalSale;
 
-basketMenuHidenText.style.visibility = 'hidden';
-
 //Функция для правильного склонения слов в зависимости от числа
 function formatCount(count, wordsArray) {
     if (count < 0 || count % 1 !== 0) {
@@ -147,6 +145,9 @@ function getClassDisplayInlineBlock(el) {
     el.classList.remove('display__flex');
     el.classList.add('display__inline-block');
 }
+
+getClassDisplayNone(basketMenuHidenText);
+
 
 getClassDisplayNone(thridItemInDelivery);
 
@@ -628,14 +629,14 @@ avaibleArrowButton.addEventListener('click', () => {
         getClassDisplayBlock(productsBlock);
         avaibleArrowButton.style.transform = 'rotateX(0deg)';
         getClassDisplayFlex(basketMenuCheck);
-        basketMenuHidenText.style.visibility = 'hidden';
+        getClassDisplayNone(basketMenuHidenText);
         getClassDisplayNone(lineOnHidden);
     }
     else if (!ArrowButtonTest) {
         getClassDisplayNone(productsBlock);
         avaibleArrowButton.style.transform = 'rotateX(180deg)';
         getClassDisplayNone(basketMenuCheck);
-        basketMenuHidenText.style.visibility = 'visible';
+        getClassDisplayBlock(basketMenuHidenText);
         getClassDisplayBlock(lineOnHidden);
         avaibleProductsBlock.textContent = totalInfo.totalCount + " " + formatCount(totalInfo.totalCount, productsWord);
         priceAvaivleHidden.textContent = priceFormatStrWithSpace(priceRound(totalInfo.totalSum));

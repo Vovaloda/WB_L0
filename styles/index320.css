@@ -89,7 +89,7 @@
 }
 
 .bascket__item {
-    margin-top: 16px;
+    margin-top: 17px;
 }
 
 .link__icon-search {
@@ -541,7 +541,7 @@
     padding: 16px 16px 24px 16px;
     border-radius: 16px;
     background: var(--white);
-    margin-top: 32px;
+    margin-top: 31px;
 }
 
 .delivery__method {
@@ -561,7 +561,7 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
-    margin: 2px 0px 0px 9px;
+    margin: 4px 0px 0px 9px;
 }
 
 .delivery__method__change:hover {
@@ -569,7 +569,7 @@
 }
 
 .delivery__info {
-    margin-top: 8px;
+    margin-top: 9px;
 }
 
 .delivery__type {
@@ -936,7 +936,7 @@
 
 .total-sum__info {
     display: flex;
-    margin-top: 20px;
+    margin-top: 19px;
     padding: 8px 8px 12px;
     border-radius: 8px;
     background: var(--smoky-dark);
